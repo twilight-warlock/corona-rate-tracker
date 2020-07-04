@@ -1,11 +1,11 @@
-import React, { useEffect, useState, Component } from "react";
+import React, { Component } from "react";
 import styles from "./App.module.css";
 import { Cards, CountryPicker, Chart } from "./components";
 import { fetchData } from "./api/index";
 
 class App extends Component {
   state = {
-    data: null,
+    data: {},
   };
   async componentDidMount() {
     const fetchedData = await fetchData();
