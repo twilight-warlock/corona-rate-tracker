@@ -2,4 +2,12 @@
   display: flex;
   justify-content: center;
   width: 85%;
+  margin: 20px auto;
+}
+@media (max-width: 560px) {
+  .chart {
+    transform: rotate(90deg);
+    width: 80vh;
+    margin: 35% 25%;
+  }
 }

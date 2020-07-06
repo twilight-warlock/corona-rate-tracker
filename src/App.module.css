@@ -9,3 +9,13 @@ body {
   align-items: center;
   justify-content: center;
 }
+.image {
+  margin: 18px auto;
+  width: 35%;
+}
+
+@media (max-width: 760px) {
+  .image {
+    width: 50%;
+  }
+}

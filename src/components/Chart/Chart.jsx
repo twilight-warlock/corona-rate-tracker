@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { fetchDailyData } from "../../api/index";
 import { Line, Bar } from "react-chartjs-2";
+import cx from "classnames";
 
 import styles from "./Chart.module.css";
 
-const Chart = () => {
+const Chart = ({ data: { confirmed, recovered, deaths }, country }) => {
   const [dailyData, setDailyData] = useState([]);
 
   useEffect(() => {
@@ -40,7 +41,34 @@ const Chart = () => {
     />
   ) : null;
 
-  return <div className={styles.container}>{rateGraph}</div>;
+  const barGraph = confirmed ? (
+    <Bar
+      data={{
+        labels: ["Infected", "Recovered", "Deaths"],
+        datasets: [
+          {
+            label: "People",
+            backgroundColor: [
+              "rgba(20, 88, 236, 0.877)",
+              "rgba(23, 231, 16, 0.877)",
+              "rgba(238, 31, 17, 0.877)",
+            ],
+            data: [confirmed.value, recovered.value, deaths.value],
+          },
+        ],
+      }}
+      options={{
+        legend: { display: false },
+        title: { display: true, text: `Current Scenario in ${country}` },
+      }}
+    />
+  ) : null;
+
+  return (
+    <div className={cx(styles.container, styles.chart)}>
+      {country ? barGraph : rateGraph}
+    </div>
+  );
 };
 
 export default Chart;
